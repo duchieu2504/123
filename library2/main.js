@@ -2,6 +2,8 @@
 const init = {
     cars: ["BMW"]
 }
+
+// xử lý chức năng và  đưa dữ liệu vào store
 function reducer(state = init, action, args) {
     switch(action){
         case('Add'):
@@ -15,6 +17,8 @@ function reducer(state = init, action, args) {
             return state
     }  
 }
+
+// Xử lý html
 function html([first, ...strings], ...values) {
     return values.reduce((acc, cur) => 
         acc.concat(cur, strings.shift()), 
@@ -22,6 +26,7 @@ function html([first, ...strings], ...values) {
     .join('')
 }
 
+// Tạo dữ liệu store  thông qua reducer và các action
 function createStore(reducer) {
     let state = reducer()
     const roots = new Map()
@@ -47,7 +52,7 @@ function createStore(reducer) {
     }
 }
 
-
+// Tạo dữ liệu đưa ra view
 const {attach, connect, dispatch} = createStore(reducer)
 window.dispatch = dispatch
 
